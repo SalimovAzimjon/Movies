@@ -1,4 +1,4 @@
-# Movies app
+# Movies app 🎥 🎞️
 This app planned to use Kotlin Coroutines, Kotlin Flow, clean architechture.
 Screens:
 * Main screen with trending movies
