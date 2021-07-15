@@ -1,5 +1,5 @@
 # Movies app 🎥 🎞️
-This app planned to use Kotlin Coroutines, Kotlin Flowб DI, CI/CD, clean architechture.
+This app planned to use Kotlin Coroutines, Kotlin Flow, DI, CI/CD, clean architechture.
 
 ### Screens:
 * Main screen with trending movies
