@@ -4,29 +4,36 @@ import androidx.lifecycle.ViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import kotlinx.coroutines.CoroutineDispatcher
+import dagger.multibindings.IntoMap
+import retrofit2.Retrofit
 import uz.med.home.data.datasource.MovieDataSource
 import uz.med.home.data.datasource.MovieDataSourceImpl
-import uz.med.home.data.usecase.GetPopularMoviesUseCase
+import uz.med.home.data.network.MoviesService
 import uz.med.home.viewmodel.HomeViewModel
+import uz.med.shared.ViewModelKey
+import uz.med.shared.ViewModelModuleContract
 
 @Module
-abstract class HomeModule {
+abstract class HomeModule : ViewModelModuleContract {
 
     @Module
     companion object {
+
         @Provides
         @HomeScope
-        @JvmStatic
-        fun provideHomeViewModel(
-            map: @JvmSuppressWildcards MutableMap<Class<out ViewModel>, ViewModel>,
-            getPopularMoviesUseCase: GetPopularMoviesUseCase,
-            ioDispatcher: CoroutineDispatcher
-        ): ViewModel = HomeViewModel(getPopularMoviesUseCase,ioDispatcher).also {
-            map[HomeViewModel::class.java] = it
+        fun provideMovieService(retrofit: Retrofit): MoviesService {
+            return retrofit.create(MoviesService::class.java)
         }
+
     }
 
+    @HomeScope
+    @ViewModelKey(HomeViewModel::class)
+    @IntoMap
+    @Binds
+    abstract fun bindHomeViewModel(homeViewModel: HomeViewModel): ViewModel
+
+    @HomeScope
     @Binds
     abstract fun bindMoviesDataSource(movieDataSourceImpl: MovieDataSourceImpl): MovieDataSource
 }

@@ -1,35 +1,43 @@
 package uz.med.core_impl.service
 
-import android.content.Context
-import com.chuckerteam.chucker.api.ChuckerInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import uz.med.core_api.service.MoviesService
+import timber.log.Timber
+import uz.med.core_impl.BuildConfig
 import javax.inject.Singleton
+
 
 @Module
 object RetrofitModule {
     val BASE_URL = "https://api.themoviedb.org/3/"
-    val BASE_URL_IMAGE = "https://image.tmdb.org/t/p/original/"
+
+    @Singleton
+    @Provides
+    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor =
+        HttpLoggingInterceptor(object : HttpLoggingInterceptor.Logger {
+            override fun log(message: String) {
+                Timber.tag("okhttp").i(message)
+            }
+
+        }).setLevel(HttpLoggingInterceptor.Level.BODY)
 
 
     @Singleton
     @Provides
-    fun provideRetrofitClient(
-        context: Context
-    ): OkHttpClient {
-//        val token = BuildConfig.API_TOKEN
+    fun provideRetrofitClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+        val token = BuildConfig.API_KEY
         val client = OkHttpClient.Builder()
-            .addInterceptor(ChuckerInterceptor.Builder(context).build())
+            .addInterceptor(httpLoggingInterceptor)
             .addInterceptor { chain ->
                 chain.run {
                     proceed(
                         request()
                             .newBuilder()
-//                            .addHeader("Authorization", "Bearer $token")
+                            .addHeader("Authorization", "Bearer $token")
                             .build()
                     )
                 }
@@ -56,9 +64,5 @@ object RetrofitModule {
             .build()
     }
 
-    @Provides
-    @Singleton
-    fun provideMovieService(retrofit: Retrofit): MoviesService {
-        return retrofit.create(MoviesService::class.java)
-    }
+
 }

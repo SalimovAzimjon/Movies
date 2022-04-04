@@ -11,7 +11,7 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideIoDispatcher():CoroutineDispatcher{
+    fun provideIoDispatcher(): CoroutineDispatcher {
         return Dispatchers.IO
     }
 

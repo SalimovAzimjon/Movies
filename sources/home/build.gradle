@@ -5,13 +5,13 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
-        minSdk 21
-        targetSdk 31
-        versionCode 1
-        versionName "1.0"
+        minSdk rootProject.ext.minSdkVersion
+        targetSdk rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -47,9 +47,14 @@ dependencies {
     implementation lifecycleViewModel
     implementation retrofit
     implementation fragmentKtx
+    implementation cicerone
+    implementation timber
+    implementation paging
 
+    implementation project(path: ':sources:core')
     implementation project(":sources:shared")
-    implementation project(":sources:core")
+    implementation project(":sources:core_api")
+    implementation project(":sources:ui_core")
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

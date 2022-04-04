@@ -41,11 +41,17 @@ dependencies {
     implementation coroutines
     implementation viewBindingDelegate
     implementation fragmentKtx
+    implementation retrofit
     implementation(cicerone)
     implementation dagger
     kapt daggerCompiler
+    implementation cicerone
+    implementation timber
 
     implementation project(":sources:core")
+    implementation project(":sources:home")
+    implementation project(":sources:main")
+    implementation project(":sources:ui_core")
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

@@ -8,6 +8,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import uz.med.shared.util.Resource
 
 abstract class BaseViewModel(val dispatcher: CoroutineDispatcher) : ViewModel() {
@@ -16,7 +17,8 @@ abstract class BaseViewModel(val dispatcher: CoroutineDispatcher) : ViewModel() 
     val exception = _exception.asSharedFlow()
 
     val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
-        viewModelScope.launch {
+        viewModelScope.launch(dispatcher) {
+            Timber.e(throwable.message)
             _exception.emit(Resource.Error(throwable))
         }
     }

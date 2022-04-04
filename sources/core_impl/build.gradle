@@ -4,8 +4,12 @@ plugins {
     id 'kotlin-kapt'
 }
 
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
+
 
     defaultConfig {
         minSdk rootProject.ext.minSdkVersion
@@ -13,6 +17,10 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
+        buildConfigField "String", "API_KEY", localProperties['apiKey']
+//        buildConfigField("String", "API_TOKEN", localProperties['apiKey'])
+
     }
 
     buildTypes {
@@ -28,11 +36,14 @@ dependencies {
     implementation dagger
     kapt daggerCompiler
     implementation retrofit
+    implementation cicerone
     implementation moshiConverter
     releaseImplementation chuckerRelease
     debugImplementation chuckerRelease
     implementation coreKtx
     implementation appCompat
+    implementation httpLogging
+    implementation timber
 
     api project(":sources:core_api")
 
