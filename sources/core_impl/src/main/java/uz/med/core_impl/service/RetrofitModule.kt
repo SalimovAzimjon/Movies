@@ -13,7 +13,7 @@ import javax.inject.Singleton
 
 @Module
 object RetrofitModule {
-    val BASE_URL = "https://api.themoviedb.org/3/"
+    private const val BASE_URL = "https://api.themoviedb.org/3/"
 
     @Singleton
     @Provides
@@ -22,9 +22,9 @@ object RetrofitModule {
             override fun log(message: String) {
                 Timber.tag("okhttp").i(message)
             }
-
-        }).setLevel(HttpLoggingInterceptor.Level.BODY)
-
+        }).also {
+            it.level = HttpLoggingInterceptor.Level.BODY
+        }
 
     @Singleton
     @Provides

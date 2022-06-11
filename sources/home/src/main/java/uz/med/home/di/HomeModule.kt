@@ -18,13 +18,11 @@ abstract class HomeModule : ViewModelModuleContract {
 
     @Module
     companion object {
-
         @Provides
         @HomeScope
         fun provideMovieService(retrofit: Retrofit): MoviesService {
             return retrofit.create(MoviesService::class.java)
         }
-
     }
 
     @HomeScope

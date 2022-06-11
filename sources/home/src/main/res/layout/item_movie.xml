@@ -1,69 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="10dp">
+    android:layout_height="wrap_content">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <uz.med.ui_core.RoundedImageView
+        android:id="@+id/img_movie"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_margin="4dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:radius="10dp"
+        tools:src="@tools:sample/avatars" />
 
-        <uz.med.ui_core.RoundedImageView
-            android:id="@+id/img_movie"
-            android:layout_width="100dp"
-            android:layout_height="150dp"
-            android:layout_margin="4dp"
-            android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:radius="10dp"
-            tools:src="@tools:sample/avatars" />
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/tv_rating"
+        android:layout_margin="8dp"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-black"
+        android:maxLines="1"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@id/tv_rating"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/img_movie"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Avengers" />
 
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_above="@id/tv_rating"
-            android:layout_margin="8dp"
-            android:fontFamily="sans-serif-black"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:maxLines="1"
-            android:ellipsize="end"
-            app:layout_constraintBottom_toTopOf="@id/tv_rating"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/img_movie"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Avengers" />
+    <TextView
+        android:id="@+id/tv_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/img_movie"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
+        tools:text="9.5" />
 
-        <TextView
-            android:id="@+id/tv_rating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:gravity="center"
-            android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@id/img_movie"
-            app:layout_constraintTop_toBottomOf="@id/tv_title"
-            tools:text="9.5" />
-
-        <TextView
-            android:id="@+id/tv_overview"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_margin="8dp"
-            android:ellipsize="end"
-            android:fontFamily="serif"
-            android:maxLines="4"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/img_movie"
-            app:layout_constraintTop_toBottomOf="@id/tv_rating"
-            tools:text="In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</com.google.android.material.card.MaterialCardView>
+    <TextView
+        android:id="@+id/tv_overview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:ellipsize="end"
+        android:fontFamily="serif"
+        android:maxLines="4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/img_movie"
+        app:layout_constraintTop_toBottomOf="@id/tv_rating"
+        tools:text="In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available" />
+</androidx.constraintlayout.widget.ConstraintLayout>

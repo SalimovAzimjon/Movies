@@ -50,6 +50,7 @@ dependencies {
     implementation cicerone
     implementation timber
     implementation paging
+    implementation recyclerView
 
     implementation project(path: ':sources:core')
     implementation project(":sources:shared")

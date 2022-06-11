@@ -24,6 +24,7 @@ ext {
     httpLoggingVersion = '4.2.1'
     paging_version = '3.1.1'
     glide_version = "4.11.0"
+    recyclerViewVersion = "1.2.1"
 
     glide = "com.github.bumptech.glide:glide:$glide_version"
     glideCompiler = "com.github.bumptech.glide:compiler:$glide_version"
@@ -48,5 +49,6 @@ ext {
     chuckerRelease = "com.github.chuckerteam.chucker:library-no-op:$chuckerVersion"
     lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
     lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+    recyclerView = "androidx.recyclerview:recyclerview:$recyclerViewVersion"
 
 }

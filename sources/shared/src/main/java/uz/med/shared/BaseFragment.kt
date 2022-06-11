@@ -32,9 +32,6 @@ abstract class BaseFragment<T : ViewBinding>(
         }
     }
 
-    /**
-     * Use this for setting UI
-     */
     abstract fun setUpUi()
 
     /**

@@ -3,7 +3,7 @@ package uz.med.shared.util
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.repeatOnLifecycle
-import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import uz.med.shared.BaseException
@@ -22,12 +22,10 @@ suspend fun <T> StateFlow<Resource<T>>.safeCollectResource(
 }
 
 suspend fun <T> SharedFlow<Resource<T>>.collectResource(
-    block: Resource<T>.() -> Unit
+    block: suspend Resource<T>.() -> Unit
 ) {
-    coroutineScope {
-        collect {
-            block.invoke(it)
-        }
+    collect {
+        block.invoke(it)
     }
 }
 

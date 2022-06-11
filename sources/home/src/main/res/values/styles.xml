@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MovieListHeaderTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">24sp</item>
+        <item name="fontFamily">sans-serif-condensed-medium</item>
+        <item name="android:textStyle">normal</item>
+        <item name="drawableEndCompat">@drawable/ic_more</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+    </style>
+
+</resources>

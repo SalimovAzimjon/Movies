@@ -26,7 +26,10 @@ class RoundedImageView @JvmOverloads constructor(
         ).apply {
             try {
                 val imageRadius = getDimension(R.styleable.RoundedImageView_radius, 4f)
+                val drawable = getDrawable(R.styleable.RoundedImageView_srcImg)
                 this@RoundedImageView.radius = imageRadius
+                img.setImageDrawable(drawable)
+                img.scaleType = ImageView.ScaleType.CENTER_CROP
             } finally {
                 recycle()
             }
@@ -40,11 +43,11 @@ class RoundedImageView @JvmOverloads constructor(
         img.setImageResource(res)
     }
 
-    fun setImageRemote(imgUrl: String) {
+    fun setImageFromUrlPath(imgUrl: String?) {
         Glide.with(context)
             .load(BASE_URL_IMAGE + imgUrl)
             .placeholder(R.drawable.placeholder)
-            .diskCacheStrategy(DiskCacheStrategy.DATA)
+            .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
             .into(img)
     }
 

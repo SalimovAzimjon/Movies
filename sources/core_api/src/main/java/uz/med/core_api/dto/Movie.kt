@@ -2,7 +2,6 @@ package uz.med.core_api.dto
 
 import com.squareup.moshi.Json
 
-
 data class Movie(
     @field:Json(name = "adult")
     val adult: Boolean,
@@ -15,7 +14,9 @@ data class Movie(
     @field:Json(name = "original_language")
     val originalLanguage: String,
     @field:Json(name = "original_title")
-    val originalTitle: String,
+    val originalTitle: String?,
+    @field:Json(name = "original_name")
+    val originalName: String?,
     @field:Json(name = "overview")
     val overview: String,
     @field:Json(name = "popularity")
@@ -25,11 +26,11 @@ data class Movie(
     @field:Json(name = "release_date")
     val releaseDate: String,
     @field:Json(name = "title")
-    val title: String,
+    val title: String?,
     @field:Json(name = "video")
     val video: Boolean,
     @field:Json(name = "vote_average")
     val voteAverage: Double,
     @field:Json(name = "vote_count")
-    val voteCount: Int
+    val voteCount: Int,
 )

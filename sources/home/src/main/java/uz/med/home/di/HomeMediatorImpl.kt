@@ -1,6 +1,5 @@
 package uz.med.home.di
 
-import android.util.Log
 import com.github.terrakok.cicerone.Router
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 import uz.med.core_api.HomeMediator
@@ -12,12 +11,11 @@ class HomeMediatorImpl @Inject constructor(
 ) : HomeMediator {
 
     override fun openMovieScreen() {
-        Log.d("MyLog","openMovieScreen")
         router.replaceScreen(
             FragmentScreen.invoke(
-            key = HomeFragment::class.java.simpleName,
-            fragmentCreator = { HomeFragment.newInstance() }
-        ))
+                key = HomeFragment::class.java.simpleName,
+                fragmentCreator = { HomeFragment.newInstance() }
+            ))
     }
 
 }

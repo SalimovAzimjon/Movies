@@ -39,6 +39,7 @@ android {
 dependencies {
 
     implementation viewBindingDelegate
+    implementation material
     implementation coreKtx
     implementation appCompat
     implementation coroutines

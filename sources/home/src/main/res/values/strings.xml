@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="popular_movies">Popular movies</string>
+    <string name="top_rated_movies">Top rated movies</string>
+    <string name="trending_movies">Trending movies</string>
+    <string name="trending_tv_series">Trending tv series</string>
+    <string name="moviestream">MovieStream</string>
+    <string name="release_date">Will be released on: %s</string>
+</resources>
