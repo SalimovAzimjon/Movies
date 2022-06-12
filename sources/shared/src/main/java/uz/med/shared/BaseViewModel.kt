@@ -23,8 +23,13 @@ abstract class BaseViewModel(val dispatcher: CoroutineDispatcher) : ViewModel() 
         }
     }
 
-    inline fun launchInViewModelScope(crossinline block: suspend CoroutineScope.() -> Unit) =
+    inline fun launchInIOScope(crossinline block: suspend CoroutineScope.() -> Unit) =
         viewModelScope.launch(exceptionHandler + dispatcher) {
+            block.invoke(this)
+        }
+
+    inline fun launchInMainScope(crossinline block: suspend CoroutineScope.() -> Unit) =
+        viewModelScope.launch(exceptionHandler) {
             block.invoke(this)
         }
 

@@ -1,8 +1,8 @@
-package uz.med.home.di
+package uz.med.home.mediator
 
 import com.github.terrakok.cicerone.Router
 import com.github.terrakok.cicerone.androidx.FragmentScreen
-import uz.med.core_api.HomeMediator
+import uz.med.core_api.mediator.HomeMediator
 import uz.med.home.HomeFragment
 import javax.inject.Inject
 

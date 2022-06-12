@@ -6,8 +6,10 @@ import com.github.terrakok.cicerone.Router
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import uz.med.core_api.HomeMediator
-import uz.med.home.di.HomeMediatorImpl
+import uz.direction.movie_detail.mediator.MovieDetailsMediatorImpl
+import uz.med.core_api.mediator.HomeMediator
+import uz.med.core_api.mediator.MovieDetailsMediator
+import uz.med.home.mediator.HomeMediatorImpl
 import javax.inject.Singleton
 
 @Module
@@ -35,5 +37,8 @@ interface MediatorModule {
 
     @Binds
     fun homeMediator(homeMediatorImpl: HomeMediatorImpl): HomeMediator
+
+    @Binds
+    fun movieDetailsMediator(movieDetailsMediatorImpl: MovieDetailsMediatorImpl): MovieDetailsMediator
 
 }

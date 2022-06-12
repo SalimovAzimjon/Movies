@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import uz.med.core_api.ApplicationFacade
-import uz.med.core_api.HomeMediator
+import uz.med.core_api.mediator.HomeMediator
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="150dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <uz.med.ui_core.RoundedImageView
+        android:id="@+id/img_person"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:radius="50dp" />
+
+    <TextView
+        android:id="@+id/tv_person_character"
+        style="@style/MovieDetailsTextViewMedium"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="2dp"
+        android:gravity="center"
+        tools:text="Carrol" />
+
+    <TextView
+        android:id="@+id/tv_person_name"
+        style="@style/MovieDetailsTextViewSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:gravity="center"
+        android:textSize="12sp"
+        tools:text="James Mangold" />
+
+</LinearLayout>

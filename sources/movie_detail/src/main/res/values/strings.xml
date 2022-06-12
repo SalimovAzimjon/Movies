@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cast">Cast</string>
+    <string name="play">Play</string>
+    <string name="ongoing">ongoing</string>
+</resources>

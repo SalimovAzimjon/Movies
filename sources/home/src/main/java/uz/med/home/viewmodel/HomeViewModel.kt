@@ -7,6 +7,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onStart
+import uz.med.core_api.dto.MediaType
+import uz.med.core_api.mediator.MovieDetailsMediator
 import uz.med.home.domain.*
 import uz.med.home.util.ResourceMoviePagingData
 import uz.med.shared.BaseViewModel
@@ -19,6 +21,7 @@ class HomeViewModel @Inject constructor(
     private val getTopRatedMoviesUseCase: GetTopRatedMoviesUseCase,
     private val getTrendingMoviesUseCase: GetTrendingMoviesUseCase,
     private val getTrendingTvUseCase: GetTrendingTvUseCase,
+    private val movieDetailsMediator: MovieDetailsMediator,
     ioDispatcher: CoroutineDispatcher
 ) : BaseViewModel(ioDispatcher) {
 
@@ -42,7 +45,7 @@ class HomeViewModel @Inject constructor(
         getTrendingTv()
     }
 
-    fun getUpcomingMovies() = launchInViewModelScope {
+    fun getUpcomingMovies() = launchInIOScope {
         getUpcomingMoviesUseCase.execute()
             .cachedIn(viewModelScope)
             .onStart {
@@ -53,7 +56,7 @@ class HomeViewModel @Inject constructor(
             }
     }
 
-    fun getPopularMovies() = launchInViewModelScope {
+    fun getPopularMovies() = launchInIOScope {
         getPopularMoviesUseCase.execute()
             .cachedIn(viewModelScope)
             .onStart {
@@ -64,7 +67,7 @@ class HomeViewModel @Inject constructor(
             }
     }
 
-    fun getTopRatedMovies() = launchInViewModelScope {
+    fun getTopRatedMovies() = launchInIOScope {
         getTopRatedMoviesUseCase.execute()
             .cachedIn(viewModelScope)
             .onStart {
@@ -75,7 +78,7 @@ class HomeViewModel @Inject constructor(
             }
     }
 
-    fun getTrendingMovies() = launchInViewModelScope {
+    fun getTrendingMovies() = launchInIOScope {
         getTrendingMoviesUseCase.execute()
             .cachedIn(viewModelScope)
             .onStart {
@@ -86,7 +89,7 @@ class HomeViewModel @Inject constructor(
             }
     }
 
-    fun getTrendingTv() = launchInViewModelScope {
+    fun getTrendingTv() = launchInIOScope {
         getTrendingTvUseCase.execute()
             .cachedIn(viewModelScope)
             .onStart {
@@ -95,6 +98,10 @@ class HomeViewModel @Inject constructor(
             .collect {
                 _trendingTv.emit(Resource.Success(it))
             }
+    }
+
+    fun openMovieDetails(movieId: Long, mediaType: MediaType) = launchInMainScope {
+        movieDetailsMediator.openMovieDetailsScreen(movieId, mediaType)
     }
 
 }

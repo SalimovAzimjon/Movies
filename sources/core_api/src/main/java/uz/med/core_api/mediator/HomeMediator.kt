@@ -1,4 +1,4 @@
-package uz.med.core_api
+package uz.med.core_api.mediator
 
 interface HomeMediator {
 

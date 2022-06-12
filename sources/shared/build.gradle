@@ -50,6 +50,8 @@ dependencies {
     implementation dagger
     kapt daggerCompiler
     implementation timber
+    implementation glide
+    kapt glideCompiler
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

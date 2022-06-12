@@ -9,9 +9,9 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import uz.med.core_api.ApplicationFacade
+import uz.med.core_api.dto.MediaType
 import uz.med.core_api.dto.Movie
 import uz.med.home.adapter.MoviesAdapter
-import uz.med.home.data.MainScreenViewType
 import uz.med.home.databinding.FragmentHomeBinding
 import uz.med.home.di.HomeComponent
 import uz.med.home.util.ResourceMoviePagingData
@@ -29,11 +29,36 @@ class HomeFragment :
     lateinit var factoryProvider: ViewModelProvider.Factory
 
     private val viewModel by viewModels<HomeViewModel> { factoryProvider }
-    private val upComingMoviesAdapter by unsafeLazy { MoviesAdapter(MainScreenViewType.VIEW_TYPE_UPCOMING) }
-    private val popularMoviesAdapter by unsafeLazy { MoviesAdapter(MainScreenViewType.VIEW_TYPE_POPULAR) }
-    private val topRatedMoviesAdapter by unsafeLazy { MoviesAdapter(MainScreenViewType.VIEW_TYPE_TOP_RATED) }
-    private val trendingMoviesAdapter by unsafeLazy { MoviesAdapter(MainScreenViewType.VIEW_TYPE_TRENDING_MOVIES) }
-    private val trendingTvAdapter by unsafeLazy { MoviesAdapter(MainScreenViewType.VIEW_TYPE_TRENDING_TV) }
+    private val upComingMoviesAdapter by unsafeLazy {
+        MoviesAdapter(
+            MediaType.UPCOMING,
+            this::onMovieClicked
+        )
+    }
+    private val popularMoviesAdapter by unsafeLazy {
+        MoviesAdapter(
+            MediaType.POPULAR,
+            this::onMovieClicked
+        )
+    }
+    private val topRatedMoviesAdapter by unsafeLazy {
+        MoviesAdapter(
+            MediaType.TOP_RATED,
+            this::onMovieClicked
+        )
+    }
+    private val trendingMoviesAdapter by unsafeLazy {
+        MoviesAdapter(
+            MediaType.TRENDING_MOVIES,
+            this::onMovieClicked
+        )
+    }
+    private val trendingTvAdapter by unsafeLazy {
+        MoviesAdapter(
+            MediaType.TRENDING_TV,
+            this::onMovieClicked
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,13 +111,12 @@ class HomeFragment :
                         trendingTvAdapter.submitData(movie)
                     }
                 }
-                viewModel.trendingTv.collect(this@HomeFragment::setMovie)
             }
         }
     }
 
-    suspend fun setMovie(value: ResourceMoviePagingData) {
-
+    private fun onMovieClicked(movieId: Long, mediaType: MediaType) {
+        viewModel.openMovieDetails(movieId, mediaType)
     }
 
     private suspend fun setMoviesToAdapter(
