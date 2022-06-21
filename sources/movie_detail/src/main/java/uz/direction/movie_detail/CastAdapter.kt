@@ -8,8 +8,12 @@ import uz.direction.movie_detail.databinding.ItemCastBinding
 import uz.med.shared.BaseViewHolder
 import uz.med.shared.util.inflate
 
-class CastAdapter(private val cast: List<Cast>) :
+class CastAdapter(
+    private val cast: List<Cast>,
+    private val onClickListener: (Long) -> Unit
+) :
     RecyclerView.Adapter<CastAdapter.CastViewHolder>() {
+
 
     class CastViewHolder(view: View) :
         BaseViewHolder<ItemCastBinding>(view, ItemCastBinding::class.java) {
@@ -26,6 +30,9 @@ class CastAdapter(private val cast: List<Cast>) :
     }
 
     override fun onBindViewHolder(holder: CastViewHolder, position: Int) {
+        holder.itemView.setOnClickListener {
+            onClickListener.invoke(cast[position].id)
+        }
         holder.onBind(cast[position])
     }
 

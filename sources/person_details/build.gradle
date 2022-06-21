@@ -1,21 +1,18 @@
 plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
 }
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "uz.azim.movies"
         minSdk rootProject.ext.minSdkVersion
         targetSdk rootProject.ext.targetSdkVersion
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildFeatures {
@@ -28,34 +25,39 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 dependencies {
 
-
     implementation coreKtx
     implementation appCompat
     implementation material
-    implementation constraintLayout
-    implementation coroutines
-    implementation viewBindingDelegate
-    implementation fragmentKtx
-    implementation retrofit
-    implementation(cicerone)
     implementation dagger
     kapt daggerCompiler
+    implementation coroutines
+    implementation lifecycleViewModel
+    implementation retrofit
+    implementation fragmentKtx
     implementation cicerone
     implementation timber
+    implementation paging
+    implementation recyclerView
+    implementation viewBindingDelegate
+    implementation moshiConverter
 
     implementation project(":sources:core")
-    implementation project(":sources:home")
-    implementation project(":sources:main")
-    implementation project(":sources:movie_detail")
-    implementation project(":sources:person_details")
+    implementation project(":sources:shared")
+    implementation project(":sources:core_api")
     implementation project(":sources:ui_core")
 
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }

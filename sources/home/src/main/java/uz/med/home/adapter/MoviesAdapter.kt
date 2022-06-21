@@ -14,8 +14,7 @@ import uz.med.shared.util.inflate
 class MoviesAdapter(
     private val mediaType: MediaType,
     private val onMovieClickListener: (Long, MediaType) -> Unit
-) :
-    PagingDataAdapter<Movie, RecyclerView.ViewHolder>(MovieComparator()) {
+) : PagingDataAdapter<Movie, RecyclerView.ViewHolder>(MovieComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {

@@ -1,14 +1,17 @@
 package uz.direction.movie_detail
 
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import uz.direction.movie_detail.data.model.MovieInformation
 import uz.direction.movie_detail.data.model.TvInformation
 import uz.direction.movie_detail.domain.MovieDetailsUseCase
 import uz.direction.movie_detail.domain.TvDetailsUseCase
 import uz.med.core_api.dto.MediaType
+import uz.med.core_api.mediator.PersonDetailsMediator
 import uz.med.shared.BaseViewModel
 import uz.med.shared.util.Resource
 import javax.inject.Inject
@@ -16,6 +19,7 @@ import javax.inject.Inject
 class MovieDetailsViewModel @Inject constructor(
     private val movieDetailsUseCase: MovieDetailsUseCase,
     private val tvDetailsUseCase: TvDetailsUseCase,
+    private val personDetailsMediator: PersonDetailsMediator,
     ioDispatcher: CoroutineDispatcher
 ) : BaseViewModel(ioDispatcher) {
 
@@ -43,6 +47,10 @@ class MovieDetailsViewModel @Inject constructor(
         } else {
             getMovieDetails(mediaId)
         }
+    }
+
+    fun openPersonDetailsScreen(personId: Long) = viewModelScope.launch {
+        personDetailsMediator.openPersonDetailsScreen(personId)
     }
 
 }

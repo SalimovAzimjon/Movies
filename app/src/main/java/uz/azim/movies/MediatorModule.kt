@@ -7,8 +7,10 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import uz.direction.movie_detail.mediator.MovieDetailsMediatorImpl
+import uz.direction.person_details.mediator.PersonDetailsMediatorImpl
 import uz.med.core_api.mediator.HomeMediator
 import uz.med.core_api.mediator.MovieDetailsMediator
+import uz.med.core_api.mediator.PersonDetailsMediator
 import uz.med.home.mediator.HomeMediatorImpl
 import javax.inject.Singleton
 
@@ -41,4 +43,6 @@ interface MediatorModule {
     @Binds
     fun movieDetailsMediator(movieDetailsMediatorImpl: MovieDetailsMediatorImpl): MovieDetailsMediator
 
+    @Binds
+    fun personDetailsMediator(personDetailsMediatorImpl: PersonDetailsMediatorImpl): PersonDetailsMediator
 }

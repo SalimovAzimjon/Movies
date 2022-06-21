@@ -14,7 +14,7 @@ data class Cast(
     @field:Json(name = "gender")
     val gender: Int,
     @field:Json(name = "id")
-    val id: Int,
+    val id: Long,
     @field:Json(name = "known_for_department")
     val knownForDepartment: String,
     @field:Json(name = "name")

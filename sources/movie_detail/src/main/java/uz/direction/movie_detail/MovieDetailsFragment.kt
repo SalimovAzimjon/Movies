@@ -62,7 +62,9 @@ class MovieDetailsFragment : BaseFragment<FragmentMovieDetailBinding>(
 
     private fun setTvDetails(tvInformation: TvInformation) = bind {
         val tvDetails = tvInformation.tvDetails
-        val castAdapter = CastAdapter(tvInformation.credit.cast)
+        val castAdapter = CastAdapter(tvInformation.credit.cast) {
+            viewModel.openPersonDetailsScreen(it)
+        }
         rvCast.adapter = castAdapter
         imgMovie.setImageFromUrlPath(
             tvDetails.posterPath,
@@ -82,7 +84,9 @@ class MovieDetailsFragment : BaseFragment<FragmentMovieDetailBinding>(
 
     private fun setMovieDetails(movieInformation: MovieInformation) = bind {
         val movieDetails = movieInformation.movieDetails
-        val castAdapter = CastAdapter(movieInformation.movieCredit.cast)
+        val castAdapter = CastAdapter(movieInformation.movieCredit.cast) {
+            viewModel.openPersonDetailsScreen(it)
+        }
         rvCast.adapter = castAdapter
         imgMovie.setImageFromUrlPath(
             movieDetails.posterPath,

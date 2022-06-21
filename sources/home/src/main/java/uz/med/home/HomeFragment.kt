@@ -1,6 +1,7 @@
 package uz.med.home
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.paging.PagingData
@@ -18,6 +19,7 @@ import uz.med.home.util.ResourceMoviePagingData
 import uz.med.home.viewmodel.HomeViewModel
 import uz.med.shared.BaseFragment
 import uz.med.shared.util.doOnError
+import uz.med.shared.util.doOnLoading
 import uz.med.shared.util.suspendOnSuccess
 import uz.med.shared.util.unsafeLazy
 import javax.inject.Inject
@@ -124,10 +126,16 @@ class HomeFragment :
         function: suspend (PagingData<Movie>) -> Unit
     ) {
         moviesResource
+            .doOnLoading  {
+                binding.progressBar.show()
+            }
             .suspendOnSuccess { movies ->
+                binding.progressBar.hide()
                 function.invoke(movies)
             }
             .doOnError {
+                binding.progressBar.hide()
+                Toast.makeText(requireContext(), "Something went wrong!", Toast.LENGTH_SHORT).show()
                 Timber.e(it.toString())
             }
     }

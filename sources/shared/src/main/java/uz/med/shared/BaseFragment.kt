@@ -16,7 +16,7 @@ abstract class BaseFragment<T : ViewBinding>(
     bindingClass: Class<T>
 ) : Fragment(resId) {
 
-    private val binding: T by viewBinding(bindingClass)
+    protected val binding: T by viewBinding(bindingClass)
 
     fun <R> bind(block: T.() -> R) {
         block(binding)
@@ -24,6 +24,7 @@ abstract class BaseFragment<T : ViewBinding>(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 setUpUi()
@@ -35,8 +36,23 @@ abstract class BaseFragment<T : ViewBinding>(
     abstract fun setUpUi()
 
     /**
+     * Called only once when fragment created.
+     * Will not be called on re-create events
+     * Good place for one time requests
+     */
+//    open fun initialSetUp() {}
+
+    /**
      * This method used only for observing data from flows
      */
     abstract suspend fun subscribeObservers()
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+    }
 }

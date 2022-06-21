@@ -6,5 +6,6 @@ enum class MediaType(val code: Int) {
     TOP_RATED(3),
     TRENDING_MOVIES(4),
     TRENDING_TV(5),
+    DEFAULT_MOVIE(6),
 }
 

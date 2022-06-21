@@ -8,6 +8,8 @@ interface MediatorProvider {
 
     fun provideMovieDetailsMediator(): MovieDetailsMediator
 
+    fun providePersonDetailsMediator(): PersonDetailsMediator
+
     fun provideNavigationHolder(): NavigatorHolder
 
 }
